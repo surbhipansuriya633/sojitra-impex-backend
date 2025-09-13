@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes); //Product CRUD
 
-mongoose.connect("mongodb://localhost:27017/HarshDB")
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("MongoDB connected");
         app.listen(process.env.PORT, () => console.log("Server on", process.env.PORT));
