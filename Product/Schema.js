@@ -87,6 +87,7 @@ const productSchema = new mongoose.Schema(
         meesholink: String,
         flipkartlink: String,
         showInCarousel: { type: Boolean, default: false },
+        trending: { type: Boolean, default: false },
         productreview: [
             {
                 url: String,

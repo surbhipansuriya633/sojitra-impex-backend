@@ -109,6 +109,26 @@ productRoutes.put("/:id/toggle-carousel", async (req, res) => {
 });
 
 
+productRoutes.get("/trending", async (req, res) => {
+    const products = await Product.find({ trending: true });
+    res.json(products);
+});
+
+productRoutes.put("/:id/toggle-trending", async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+        if (!product) return res.status(404).json({ message: "Product not found" });
+
+        product.trending = !product.trending;
+        await product.save();
+
+        res.json({ success: true, trending: product.trending });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
 productRoutes.get("/:id", async (req, res) => {
     try {
         console.log(req.params.id);
