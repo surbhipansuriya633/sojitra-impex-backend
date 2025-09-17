@@ -1,44 +1,4 @@
 import mongoose from "mongoose";
-/* Working schema */
-// const imageSchema = new mongoose.Schema({
-//     url: String,
-//     public_id: String,
-// });
-
-// const productSchema = new mongoose.Schema({
-//     name: String,
-//     description: String,
-//     BrandName: String,
-//     price: Number,
-//     originalPrice: Number,
-//     discount: String,
-//     dealTime: String,
-//     rating: Number,
-//     reviews: Number,
-//     freeDelivery: Boolean,
-//     size: String,
-//     details: {
-//         fabric: String,
-//         blouse: String,
-//         pattern: String,
-//         border: String,
-//         netQuantity: String,
-//         sareeLength: String,
-//         blouseLength: String,
-//         origin: String,
-//     },
-//     image: imageSchema,
-//     hoverImage: imageSchema,
-//     thumbnails: [imageSchema],
-//     productreview: [imageSchema],
-//     meesholink: String,
-//     flipkartlink: String,
-// }, { timestamps: true });
-
-
-
-/* testing Schema */
-
 
 const detailSchema = new mongoose.Schema({
     fabric: String,
