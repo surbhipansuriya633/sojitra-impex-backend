@@ -8,6 +8,7 @@ import AboutRoutes from "./About-Us/AboutRoutes.js";
 import teamRoutes from "./Team/teamRoutes.js";
 import Testimonials from "./testimonial/TestimonialRoutes.js";
 import cartRoutes from "./Product/Cart/cartRoutes.js";
+import Orderrouter from "./Product/Payment/Order.js";
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,7 @@ app.use("/cart", cartRoutes);  //Cart CRUD
 app.use("/aboutus", AboutRoutes); //About_Us CRUD
 app.use("/team", teamRoutes); //Team CRUD
 app.use("/testimonials", Testimonials); //Team CRUD
+app.use("/order", Orderrouter); //Order CRUD
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
