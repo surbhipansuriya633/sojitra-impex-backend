@@ -51,7 +51,8 @@ Orderrouter.post("/verify-payment", async (req, res) => {
             productId,
             userId,
             quantity,
-            amount
+            amount,
+            address
         } = req.body;
 
         // Verify signature
@@ -70,7 +71,7 @@ Orderrouter.post("/verify-payment", async (req, res) => {
                 orderId: razorpay_order_id,
                 status: "Paid",
                 quantity: quantity,        // ✅ Add quantity
-                amount: amount,            // ✅ Add total amount
+                amount: amount,           // ✅ Add total amount
             });
             await newOrder.save();
 

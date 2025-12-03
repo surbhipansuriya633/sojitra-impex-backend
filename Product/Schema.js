@@ -44,6 +44,11 @@ const productSchema = new mongoose.Schema(
                 public_id: String,
             },
         ],
+        category: {
+            type: String,
+            enum: ["Saree", "Kurti", "jwellery"],
+            required: true
+        },
         meesholink: String,
         flipkartlink: String,
         showInCarousel: { type: Boolean, default: false },

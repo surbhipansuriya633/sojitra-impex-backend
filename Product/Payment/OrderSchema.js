@@ -34,6 +34,9 @@ const orderSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        address: {
+            type: String,
+        }
     },
     { timestamps: true }
 );
