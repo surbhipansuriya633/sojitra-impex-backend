@@ -1,10 +1,10 @@
 import express from "express";
-import { loginUser, PayAddress, registerUser } from "./authController.js";
+import { loginUser, registerUser, updateUser } from "./authController.js";
 
 const authRoutes = express.Router();
 
 authRoutes.post("/register", registerUser);
 authRoutes.post("/login", loginUser);
-authRoutes.put("/update-address/:id", PayAddress);
+authRoutes.put("/update/:id", updateUser);
 
 export default authRoutes;

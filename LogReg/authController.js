@@ -8,13 +8,13 @@ const generateToken = (id) => {
 
 // Register
 export const registerUser = async (req, res) => {
-    const { firstName, lastName, email, password,address } = req.body;
+    const { firstName, lastName, email, password, address } = req.body;
     try {
         const exists = await User.findOne({ email });
         if (exists) return res.status(400).json({ error: "Email already exists" });
 
         const hashed = await bcrypt.hash(password, 10);
-        const user = await User.create({ firstName, lastName, email, password: hashed,address });
+        const user = await User.create({ firstName, lastName, email, password: hashed, address });
 
         res.json({ success: true, token: generateToken(user._id), user });
     } catch (err) {
@@ -63,5 +63,43 @@ export const PayAddress = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server error" });
+    }
+};
+
+
+export const updateUser = async (req, res) => {
+    console.log(req.body);
+
+    const { id } = req.params;
+    const { firstName, lastName, email, address } = req.body;
+
+    try {
+        // Check if user exists
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        // Update fields
+        user.firstName = firstName ?? user.firstName;
+        user.lastName = lastName ?? user.lastName;
+        user.email = email ?? user.email;
+        user.address = address ?? user.address;
+
+        // If password provided → hash again
+
+        const updatedUser = await user.save();
+
+        res.json({
+            success: true,
+            message: "User updated successfully",
+            user: {
+                ...updatedUser._doc,
+                password: undefined // remove password from response
+            }
+        });
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 };
